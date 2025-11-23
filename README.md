@@ -1,2 +1,2 @@
 # la.vvsk.in
-PWA for Lifestyle Adapter
+Lifestyle Adapter Framework Homepage
