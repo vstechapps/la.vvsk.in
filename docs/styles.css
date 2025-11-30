@@ -259,7 +259,6 @@ header {
 .pillars-grid {
     display: grid;
     grid-template-columns: 1fr;
-    /* Mobile: 1 column */
     gap: 30px;
     margin-top: 40px;
 }
@@ -267,14 +266,12 @@ header {
 @media (min-width: 768px) {
     .pillars-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* Tablet: 2 columns */
     }
 }
 
 @media (min-width: 1024px) {
     .pillars-grid {
         grid-template-columns: repeat(4, 1fr);
-        /* Desktop: 4 columns */
     }
 }
 
@@ -575,26 +572,189 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Responsive */
+/* Hamburger Menu Button */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.hamburger-menu span {
+    width: 25px;
+    height: 3px;
+    background: var(--dark);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover span {
+    background: var(--primary);
+}
+
+/* Mobile Sidebar */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1002;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+}
+
+.mobile-sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: var(--light);
+}
+
+.sidebar-header .logo {
+    font-size: 1.2rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--gray);
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    color: var(--primary);
+    transform: rotate(90deg);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    color: var(--dark);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+    font-size: 1.2rem;
+    color: var(--gray);
+    width: 25px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-link:hover {
+    background: var(--light);
+    border-left-color: var(--primary);
+    color: var(--primary);
+}
+
+.sidebar-link:hover i {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.sidebar-link.active {
+    background: var(--light);
+    border-left-color: var(--primary);
+    color: var(--primary);
+}
+
+.sidebar-link.active i {
+    color: var(--primary);
+}
+
+.sidebar-link.btn-link {
+    margin: 10px 20px;
+    background: var(--gradient-main);
+    color: var(--white) !important;
+    border-radius: 12px;
+    border-left: none;
+    justify-content: center;
+    box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
+}
+
+.sidebar-link.btn-link i {
+    color: var(--white);
+}
+
+.sidebar-link.btn-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
+    background: var(--gradient-main);
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Active Link Styling */
+.nav-links a.active {
+    background: var(--primary);
+    color: var(--white) !important;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+/* Ensure Get App button text is white */
+header .btn-primary {
+    color: #ffffff !important;
+}
+
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
+
+    /* Show hamburger menu on mobile */
+    .hamburger-menu {
+        display: flex;
     }
 
-    .nav-links {
-        /* display: none; */
-        /* Un-hiding for now to allow testing, or keep hidden if hamburger is needed later */
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: white;
-        width: 100%;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: none;
-        /* Keeping hidden for now as per original design, user didn't ask for mobile menu yet */
+    /* Hide desktop navigation on mobile */
+    .desktop-nav {
+        display: none !important;
+    }
+
+    /* Adjust hero section for mobile */
+    .hero h1 {
+        font-size: 2.5rem;
     }
 
     .core-idea blockquote {
@@ -611,23 +771,11 @@ footer {
     }
 }
 
-/* Fixes and Enhancements */
-.nav-links a {
-    transition: all 0.3s ease;
-}
+/* Tablet and Desktop - Keep desktop nav visible */
+@media (min-width: 769px) {
 
-.nav-links a.active {
-    background: var(--primary);
-    color: var(--white) !important;
-    padding: 8px 16px;
-    border-radius: 20px;
-}
-
-.btn {
-    cursor: pointer;
-}
-
-/* Ensure Get App button text is white */
-header .btn-primary {
-    color: #ffffff !important;
+    .mobile-sidebar,
+    .sidebar-overlay {
+        display: none !important;
+    }
 }

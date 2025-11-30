@@ -22,7 +22,16 @@
             <div class="logo">
                 <span>⭐</span> LA Framework 1.0
             </div>
-            <nav class="nav-links">
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-links desktop-nav">
                 <a href="#pillars">Pillars</a>
                 <a href="#daily-loop">Daily Loop</a>
                 <a href="#categories">Categories</a>
@@ -30,6 +39,39 @@
                     App</a>
             </nav>
         </div>
+
+        <!-- Mobile Sidebar Navigation -->
+        <div class="mobile-sidebar" id="mobileSidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span>⭐</span> LA Framework 1.0
+                </div>
+                <button class="close-btn" id="closeBtn" aria-label="Close navigation menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#pillars" class="sidebar-link">
+                    <i class="fas fa-columns"></i>
+                    <span>Pillars</span>
+                </a>
+                <a href="#daily-loop" class="sidebar-link">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Daily Loop</span>
+                </a>
+                <a href="#categories" class="sidebar-link">
+                    <i class="fas fa-th-large"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="https://app.vvsk.in" class="sidebar-link btn-link">
+                    <i class="fas fa-rocket"></i>
+                    <span>Get App</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
     </header>
 
     <!-- Hero Section -->
@@ -393,10 +435,39 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const closeBtn = document.getElementById('closeBtn');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+        // Open sidebar
+        hamburgerBtn.addEventListener('click', () => {
+            mobileSidebar.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close sidebar
+        const closeSidebar = () => {
+            mobileSidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        closeBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar when clicking on a link
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+
         // Active Link Highlighting on Scroll
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
+            const navLinks = document.querySelectorAll('.nav-links a, .sidebar-link');
 
             window.addEventListener('scroll', () => {
                 let current = '';
