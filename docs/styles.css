@@ -779,3 +779,23 @@ header .btn-primary {
         display: none !important;
     }
 }
+/* Logo Image Styles */
+.logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    color: var(--dark);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.logo:hover .logo-text {
+    color: var(--primary);
+}
+
+.sidebar-header .logo-img {
+    height: 35px;
+}
