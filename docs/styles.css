@@ -132,10 +132,6 @@ header {
     gap: 8px;
 }
 
-.logo span {
-    color: var(--primary);
-}
-
 .nav-links {
     display: flex;
     gap: 30px;
@@ -779,6 +775,7 @@ header .btn-primary {
         display: none !important;
     }
 }
+
 /* Logo Image Styles */
 .logo-img {
     height: 40px;
